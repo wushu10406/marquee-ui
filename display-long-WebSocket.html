@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>長版顯示頁</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+    #container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .marquee {
+      white-space: nowrap;
+      overflow: hidden;
+      animation: scroll linear infinite;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById("container");
+
+    function applySettings() {
+      const text = localStorage.getItem("marqueeText") || "";
+      const bgColor = localStorage.getItem("marqueeBg") || "black";
+      const textColor = localStorage.getItem("marqueeColor") || "white";
+      const fontSize = localStorage.getItem("marqueeSize") || "48";
+      const direction = localStorage.getItem("marqueeDirection") || "left";
+      const speed = localStorage.getItem("marqueeSpeed") || "10";
+
+      container.style.backgroundColor = bgColor;
+      container.innerHTML = ""; // 清空舊內容
+
+      const marquee = document.createElement("div");
+      marquee.classList.add("marquee");
+      marquee.textContent = text;
+      marquee.style.color = textColor;
+      marquee.style.fontSize = fontSize + "px";
+      marquee.style.animationDuration = speed + "s";
+      marquee.style.animationDirection = direction === "left" ? "normal" : "reverse";
+
+      container.appendChild(marquee);
+    }
+
+    applySettings();
+
+    const ws = new WebSocket("wss://marquee-server.onrender.com");
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      for (const key in data) {
+        localStorage.setItem("marquee" + key.charAt(0).toUpperCase() + key.slice(1), data[key]);
+      }
+      applySettings();
+    };
+  </script>
+</body>
+</html>
