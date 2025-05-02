@@ -55,7 +55,7 @@
 
     applySettings();
 
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("wss://marquee-server.onrender.com");
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       for (const key in data) {
