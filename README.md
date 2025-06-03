@@ -16,6 +16,6 @@
 4. 點 `Create Static Site`
 
 建完後你就會拿到網址，如：
-https://marquee-ui.onrender.com/display-long-WebSocket.html
+[https://marquee-ui.onrender.com/display-long-WebSocket.html](https://marquee-ui.onrender.com/control-WebSocket.html)
 
 即可搭配 WebSocket Server 使用！
