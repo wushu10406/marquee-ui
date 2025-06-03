@@ -8,14 +8,15 @@
 
 ## Render Static Site 部署步驟：
 
-1. 上傳此資料夾至 GitHub 新 repo（例如：marquee-ui）
-2. 到 Render.com 建立 `Static Site`，選該 repo
-3. 設定如下：
-   - Build command：空白
-   - Publish directory：`.`（一個點）
-4. 點 `Create Static Site`
+1. 到後台 [https://dashboard.render.com/](https://dashboard.render.com/)
+2. 選擇 marquee-server 並重新 deploy
 
-建完後你就會拿到網址，如：
-[https://marquee-ui.onrender.com/display-long-WebSocket.html](https://marquee-ui.onrender.com/control-WebSocket.html)
+
+開啟後台網址：
+[https://marquee-ui.onrender.com/control-WebSocket.html](https://marquee-ui.onrender.com/control-WebSocket.html)
+
+顯示網址：
+長版：[https://marquee-ui.onrender.com/display-long-WebSocket.html](https://marquee-ui.onrender.com/display-long-WebSocket.html)
+短版：[https://marquee-ui.onrender.com/display-short-WebSocket.html](https://marquee-ui.onrender.com/display-short-WebSocket.html)
 
 即可搭配 WebSocket Server 使用！
